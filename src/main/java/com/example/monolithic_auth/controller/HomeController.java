@@ -27,7 +27,7 @@ public class HomeController {
 
         if(loginService.login(params)){
             response.put("result","SUCCESS");
-            response.put("user",params);
+            response.put("user",params.getEmail());
         }else {
             response.put("result", "FAIL");
             response.put("reason", "일치하는 회원 정보가 없습니다.");

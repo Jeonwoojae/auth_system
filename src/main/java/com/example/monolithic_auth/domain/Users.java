@@ -4,6 +4,8 @@ import lombok.*;
 
 import javax.persistence.*;
 
+import static com.example.monolithic_auth.utils.EncryptionUtils.encryptSHA256;
+
 @Getter
 @NoArgsConstructor
 @Entity
@@ -33,14 +35,14 @@ public class Users extends BaseTimeEntity {
     public Users(String name, String email, String password, Role role){
         this.name = name;
         this.email = email;
-        this.password = password;
+        this.password = encryptSHA256(password);
         this.role = role;
     }
 
     public void update(Users newUser){
         this.name = newUser.getName();
         this.email = newUser.getEmail();
-        this.password = newUser.getPassword();
+        this.password = encryptSHA256(newUser.getPassword());
         this.role = newUser.getRole();
     }
 
