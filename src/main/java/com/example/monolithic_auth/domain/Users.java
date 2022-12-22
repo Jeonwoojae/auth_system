@@ -37,4 +37,11 @@ public class Users extends BaseTimeEntity {
         this.role = role;
     }
 
+    public void update(Users newUser){
+        this.name = newUser.getName();
+        this.email = newUser.getEmail();
+        this.password = newUser.getPassword();
+        this.role = newUser.getRole();
+    }
+
 }
