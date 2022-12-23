@@ -19,7 +19,7 @@ public class HomeController {
 
     }
 
-    @GetMapping("/login")
+    @PostMapping("/login")
     public Map<String, Object> login(@RequestBody final UserRequestDto params){
         Map<String, Object> response = new HashMap<>();
 
