@@ -1,9 +1,7 @@
 package com.example.monolithic_auth.controller;
 
-import com.example.monolithic_auth.domain.UserRequestDto;
-import com.example.monolithic_auth.domain.UserResponseDto;
+import com.example.monolithic_auth.dto.UserRequestDto;
 import com.example.monolithic_auth.service.LoginService;
-import com.example.monolithic_auth.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

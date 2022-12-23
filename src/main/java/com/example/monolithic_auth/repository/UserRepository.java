@@ -1,5 +1,7 @@
-package com.example.monolithic_auth.domain;
+package com.example.monolithic_auth.repository;
 
+import com.example.monolithic_auth.dto.UserResponseDto;
+import com.example.monolithic_auth.domain.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

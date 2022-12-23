@@ -1,12 +1,11 @@
 package com.example.monolithic_auth.service;
 
-import com.example.monolithic_auth.domain.UserRepository;
+import com.example.monolithic_auth.repository.UserRepository;
 import com.example.monolithic_auth.domain.Users;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class AdminService {

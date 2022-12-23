@@ -1,9 +1,9 @@
 package com.example.monolithic_auth.service;
 
 import com.example.monolithic_auth.domain.Users;
-import com.example.monolithic_auth.domain.UserRepository;
-import com.example.monolithic_auth.domain.UserRequestDto;
-import com.example.monolithic_auth.domain.UserResponseDto;
+import com.example.monolithic_auth.repository.UserRepository;
+import com.example.monolithic_auth.dto.UserRequestDto;
+import com.example.monolithic_auth.dto.UserResponseDto;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

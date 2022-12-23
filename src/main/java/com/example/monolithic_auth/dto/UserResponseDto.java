@@ -1,5 +1,7 @@
-package com.example.monolithic_auth.domain;
+package com.example.monolithic_auth.dto;
 
+import com.example.monolithic_auth.domain.Role;
+import com.example.monolithic_auth.domain.Users;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

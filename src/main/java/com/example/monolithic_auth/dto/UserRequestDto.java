@@ -1,4 +1,4 @@
-package com.example.monolithic_auth.domain;
+package com.example.monolithic_auth.dto;
 
 import lombok.AccessLevel;
 import lombok.Getter;
