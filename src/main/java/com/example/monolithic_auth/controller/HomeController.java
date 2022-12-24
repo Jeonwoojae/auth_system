@@ -46,7 +46,7 @@ public class HomeController {
         cookie.setDomain("localhost");
         cookie.setPath("/"); //모든 위치에서 저장
         cookie.setMaxAge(Integer.parseInt(exp));
-        cookie.setSecure(true);
+        cookie.setSecure(false);
         response.addCookie(cookie);
 
         return token;
