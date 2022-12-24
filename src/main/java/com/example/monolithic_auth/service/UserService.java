@@ -1,6 +1,8 @@
 package com.example.monolithic_auth.service;
 
+import com.example.monolithic_auth.domain.Role;
 import com.example.monolithic_auth.domain.Users;
+import com.example.monolithic_auth.dto.UserJoinDto;
 import com.example.monolithic_auth.repository.UserRepository;
 import com.example.monolithic_auth.dto.UserRequestDto;
 import com.example.monolithic_auth.dto.UserResponseDto;
@@ -18,12 +20,12 @@ public class UserService {
     }
 
     @Transactional
-    public Users save(Users inputUsers){
+    public Users save(UserJoinDto inputUsers){
         Users users = Users.builder()
                 .name(inputUsers.getName())
                 .email(inputUsers.getEmail())
                 .password(inputUsers.getPassword())
-                .role(inputUsers.getRole())
+                .role(Role.USER)
                 .build();
         return userRepository.save(users);
     }
@@ -31,6 +33,11 @@ public class UserService {
     @Transactional(readOnly=true)
     public Optional<Users> findById(Long id) {
         return userRepository.findById(id);
+    }
+
+    @Transactional
+    public Users findByEmail(String email){
+        return userRepository.findByEmail(email);
     }
 
     @Transactional
