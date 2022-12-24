@@ -3,34 +3,34 @@ package com.example.monolithic_auth.utils;
 import com.example.monolithic_auth.domain.Users;
 import io.jsonwebtoken.*;
 
+import io.jsonwebtoken.io.Decoders;
+import io.jsonwebtoken.security.Keys;
 import io.jsonwebtoken.security.SignatureException;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 
-import javax.crypto.spec.SecretKeySpec;
 import javax.xml.bind.DatatypeConverter;
 import java.security.Key;
 import java.util.Date;
 
 
 
-@Component
+@Service
 @Slf4j
 public class JwtProvider{
-    @Value("${jwt.secret}")
-    private static String SECRET_KEY;
-    @Value("@{jwt.expired-time")
-    private static long EXP;
+//    @Value("${jwt.secret}")
+    private String SECRET_KEY = "jefnewjfnewfehfvahwefjwfjewkfabfjkfefwefwfafefawfeffdewfewfeffwf";
+//    @Value("${jwt.expired-time")
+    private long EXP = 634000;
 
 //  보통 subject는 유저의 아이디 사용하여 토큰을 만든다.
     public String createToken(Users user){
         SignatureAlgorithm signatureAlgorithm =SignatureAlgorithm.HS256;
 
 //        string 형태 키를 바이트로 변경
-        byte[] secretKeyBytes = DatatypeConverter.parseBase64Binary(SECRET_KEY);
-        Key signingKey = new SecretKeySpec(secretKeyBytes, signatureAlgorithm.getJcaName());
+        byte[] secretKeyBytes = Decoders.BASE64.decode(SECRET_KEY);
+        Key signingKey = Keys.hmacShaKeyFor(secretKeyBytes);
 
         return Jwts.builder()
                 .setHeaderParam(Header.TYPE, Header.JWT_TYPE)
