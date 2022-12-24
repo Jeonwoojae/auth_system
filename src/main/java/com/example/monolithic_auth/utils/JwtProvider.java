@@ -7,22 +7,23 @@ import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import io.jsonwebtoken.security.SignatureException;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 
-import javax.xml.bind.DatatypeConverter;
+
+
 import java.security.Key;
 import java.util.Date;
 
 
 
-@Service
+@Component
 @Slf4j
 public class JwtProvider{
 //    @Value("${jwt.secret}")
-    private String SECRET_KEY = "jefnewjfnewfehfvahwefjwfjewkfabfjkfefwefwfafefawfeffdewfewfeffwf";
-//    @Value("${jwt.expired-time")
-    private long EXP = 634000;
+    private String SECRET_KEY = "dfegereagdwsfadsfwaefawefaweaffaewfwefffeijojxcbawhdqwdvwhjdhj";
+//    @Value("${jwt.expired-time}")
+    private long EXP = 86400;
 
 //  보통 subject는 유저의 아이디 사용하여 토큰을 만든다.
     public String createToken(Users user){
@@ -38,20 +39,22 @@ public class JwtProvider{
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + EXP))
                 .claim("role",user.getRole().getKey())
-                .signWith(signingKey, signatureAlgorithm)
+                .signWith(signingKey, SignatureAlgorithm.HS256)
                 .compact();
     }
 
 //    토큰 정보 가져오기
     public String getSubject(String token){
+        log.info("토큰 가져오기");
+        Key signingKey = Keys.hmacShaKeyFor(Decoders.BASE64.decode(SECRET_KEY));
        try {
            Jws<Claims> claims = Jwts.parserBuilder()
-                   .setSigningKey(DatatypeConverter.parseBase64Binary(SECRET_KEY))
+                   .setSigningKey(signingKey)
                    .build()
                    .parseClaimsJws(token);
            Claims body = claims.getBody();
 
-           System.out.println(body);
+           log.info("토큰의 body {}",body);
 //        토큰의 많은 정보들 중 사용할 서브젝트만
            return body.get("role",String.class);
            
