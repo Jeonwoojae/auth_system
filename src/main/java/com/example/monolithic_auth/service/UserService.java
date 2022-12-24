@@ -40,18 +40,18 @@ public class UserService {
         return userRepository.findByEmail(email);
     }
 
-    @Transactional
-    public int deleteById(long id){
-        Optional<Users> oUser = userRepository.findById(id);
-        if(oUser.isPresent()){
-            userRepository.delete(oUser.get());
-            return 1;
-        }
-        return 0;
-    }
+
 
     public UserResponseDto findByLoginForm(final UserRequestDto params){
         UserResponseDto entity = userRepository.findByEmailAndPassword(params.getEmail(),params.getPassword());
         return entity;
+    }
+
+    @Transactional
+    public long updateUser(Users updateUser){
+        Users user = userRepository.findById(updateUser.getId())
+                .orElseThrow(() -> new RuntimeException("수정할 사용자를 찾을 수 없음."));
+        user.update(updateUser);
+        return updateUser.getId();
     }
 }

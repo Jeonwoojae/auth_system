@@ -28,9 +28,16 @@ public class AdminController {
         return response;
     }
 
-    @PutMapping
-    public long updateUser(@RequestBody Users newUser){
-        long res = adminService.updateUser(newUser);
-        return res;
+
+    @DeleteMapping("/user/{id}")
+    public Map<String, Object> delete(@PathVariable("id") long id){
+        Map<String, Object> response = new HashMap<>();
+        if(adminService.deleteById(id) > 0) {
+            response.put("result","SUCCESS");
+        } else {
+            response.put("result","FAIL");
+            response.put("reason","일치하는 회원정보가 없습니다.");
+        }
+        return response;
     }
 }
