@@ -1,6 +1,7 @@
 package com.example.monolithic_auth.controller;
 
 import com.example.monolithic_auth.domain.Users;
+import com.example.monolithic_auth.dto.UserJoinDto;
 import com.example.monolithic_auth.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +23,7 @@ public class UserController {
     }
 
     @PostMapping("/signin")
-    public Map<String, Object> save(@RequestBody Users newUsers){
+    public Map<String, Object> save(@RequestBody UserJoinDto newUsers){
         Map<String, Object>response = new HashMap<>();
         Users users = userService.save(newUsers);
         if (users != null){
